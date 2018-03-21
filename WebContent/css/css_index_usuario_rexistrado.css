@@ -1,0 +1,86 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "header header header header header header header header header header header header"
+                         "nav nav nav section section section section section section section section section"
+}
+
+
+header{
+    grid-area: header;
+    background-color: rgb(39, 175, 134);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+
+header>div{
+    display: flex;
+    align-items: center;
+}
+
+header > div > img{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+header > div > a{
+    font-size: 20pt;
+    padding: 10px;
+}
+
+header > div> a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+header >div> a:link{
+    color: black;
+    text-decoration: none;
+}
+
+.logo{
+    width: 57px;
+    height: 57px;
+}
+
+nav{
+    grid-area: nav;
+    background-color: grey;
+    text-align: center;
+}
+
+nav > form> div > input{
+    margin: 10px;
+}
+
+section{
+    grid-area: section;
+    background-color: rgba(39, 175, 134, 0.8);
+}
+
+form{
+    display: grid;
+    grid-gap: 20px;
+    padding: 30px;
+    font-size: 16pt;
+}
+
+legend{
+    font-size: 20pt;
+    text-align: center;
+}
+
+.center{
+    justify-self: center;
+    padding: 0px 20px;
+}
+

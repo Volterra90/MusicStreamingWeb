@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.musicstreaming.streaming.model.User;
-import com.musicstreaming.streaming.service.UserService;
-import com.musicstreaming.streaming.service.impl.MockUserServiceImpl;
+import com.musicstreaming.streaming.service.UsuarioService;
+import com.musicstreaming.streaming.service.impl.UsuarioServiceImpl;
 import com.musicstreaming.streaming.util.PasswordEncryptionUtil;
 import com.musicstreaming.streaming.web.util.SessionManager;
 
@@ -20,11 +19,11 @@ import com.musicstreaming.streaming.web.util.SessionManager;
 @WebServlet("/SignInServlet")
 public class SignInServlet extends HttpServlet {    
 
-	private UserService userService = null;
+	private UsuarioService usuarioService = null;
 	
     public SignInServlet() {
         super();
-        userService = new MockUserServiceImpl();
+        usuarioService = new UsuarioServiceImpl();
     }
 
 
@@ -35,13 +34,13 @@ public class SignInServlet extends HttpServlet {
 		String target = null;
 		boolean redirect = false;
 		try {
-			User user = userService.findUserById(userName);			
+			Usuario usuario = usuarioService.findUserById(userName);			
 			if (user==null) {
 				request.setAttribute(AttributeNames.ERROR, AttributeNames.USER_NOT_FOUND_ERROR);
 				target = ViewsPaths.SIGN_IN;
 			} else {				
-				if (!PasswordEncryptionUtil.checkPassword(password,user.getEncryptedPassword())) {
-					request.setAttribute(AttributeNames.ERROR, "ContraseÃ±a incorrecta");			
+				if (!PasswordEncryptionUtil.checkPassword(password,usuario.getEncryptedPassword())) {
+					request.setAttribute(AttributeNames.ERROR, "Contraseña incorrecta");			
 					target = ViewsPaths.SIGN_IN;
 				} else {
 					SessionManager.set(request, SessionAttributeNames.USER, user);
