@@ -18,6 +18,8 @@ import com.musicstreaming.streaming.service.UsuarioService;
 import com.musicstreaming.streaming.service.impl.UsuarioServiceImpl;
 import com.musicstreaming.streaming.util.PasswordEncryptionUtil;
 import com.musicstreaming.streaming.util.ToStringUtil;
+import com.musicstreaming.streaming.web.util.CookieManager;
+import com.musicstreaming.streaming.web.util.SessionManager;
 
 /**
  * Servlet de Usuario
@@ -61,6 +63,41 @@ public class UserServlet extends HttpServlet {
 			logger.error(e.getMessage(),e);
 			request.setAttribute(AttributeNames.ERROR, e.getMessage());
 			request.getRequestDispatcher(ViewsPaths.SIGN_UP).forward(request, response);
+		}
+		
+		if (ParameterNames.SIGNIN.equalsIgnoreCase(action)) {
+			String userName = request.getParameter(ParameterNames.NOME);
+			String password = request.getParameter(ParameterNames.PASSWORD);
+						
+			String target = null;
+			boolean redirect = false;
+			try {
+				Usuario usuario = usuarioService.findUserById(userName);			
+				if (usuario==null) {
+					request.setAttribute(AttributeNames.ERROR, AttributeNames.USER_NOT_FOUND_ERROR);
+					target = ViewsPaths.SIGN_IN;
+				} else {				
+					if (!PasswordEncryptionUtil.checkPassword(password,usuario.getContrasinal())) {
+						request.setAttribute(AttributeNames.ERROR, "Contraseña incorrecta");			
+						target = ViewsPaths.SIGN_IN;
+					} else {
+						SessionManager.set(request, SessionAttributeNames.USER, usuario);
+						CookieManager.addCookie(response, "login", usuario.getEmail(), "/", 30*24*60*60);
+						target = ViewsPaths.INDEX;
+						redirect = true;
+					}
+				}
+				if (redirect) {
+					response.sendRedirect(request.getContextPath()+ViewsPaths.SIGN_IN);
+				} else {
+					request.getRequestDispatcher(target).forward(request, response);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO Pendiente de explicar
+			}
+			
 		}
 	}
 

@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.musicstreaming.streaming.web.controller.SessionAttributeNames;
-import com.musicstreaming.streaming.web.model.ShoppingCart;
 
 	
 public class SessionManager {
@@ -30,8 +29,7 @@ public class SessionManager {
 			session = request.getSession(true);
 			// Pasarlo a un filtro... porque si no el ..a.d
 			 
-			ShoppingCart c = new ShoppingCart(); 
-			session.setAttribute(SessionAttributeNames.SHOPPING_CART, c);
+			/*session.setAttribute(SessionAttributeNames.SHOPPING_CART, c);*/
 		}
 		return session;
 	}	

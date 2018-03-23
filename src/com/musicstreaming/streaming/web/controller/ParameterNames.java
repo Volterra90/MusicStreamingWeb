@@ -7,6 +7,7 @@ public interface ParameterNames {
 	
 	//Tipos de acción
 	public static final String SIGNUP = "signup";
+	public static final String SIGNIN ="signin";
 	
 	//Parámetros de rexistro
 	public static final String NOME = "nome";

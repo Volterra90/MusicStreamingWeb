@@ -1,40 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
-<!-- Controlamos nosotros la inicializacion, en SessionManager -->
-<%@page session="false"%>  
-
-<%@page import="com.musicstreaming.streaming.model.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
-	<head>
-		<!-- imports de css, js -->
-		<link rel="stylesheet" type="text/css" href="/SacraWeb/css/sacra.css">
-	</head>
-	<body>
-		<div class="header">
-
-			<a href="/SacraWeb/html/index.jsp">
-				<img src="/SacraWeb/images/static/sacra-logo.jpg" height="60" width="60"></img>
-				Ribeira Sacra Turismo
+<head>
+<meta charset="UTF-8">
+<title>MusicStreaming - Life's Music</title>
+<link rel="stylesheet" type="text/css"
+	href="../../css/css_index_usuario_rexistrado.css">
+</head>
+<body>
+	<div id="contenedor">
+		<header>
+			<div>
+				<img src="../../img/home-icon.png" /> <a href="">AS MIÑAS
+					PLAYLISTS</a>
+			</div>
+			<img src="../../img/logo_sin_texto.png" class="logo" />
+			<div>
 				
-				<!-- Tile de carrito -->
-				<div class="shopping-cart">			
-				<%@include file="/html/cart/shopping-cart-resume.jsp"%>						
-				</div>				
-				
-				<!-- Tile de usuario -->
-				<div class="user-data">			
-				<%@include file="/html/user/user-profile.jsp"%>						
+			</div>
+			<div>
+				<img src="../../img/logout.png" /> <a href="">EN</a> | <a href="">GL</a>
+			</div>
+		</header>
+		<nav>
+			<form>
+				<legend>Búsqueda</legend>
+				<input type="text" />
+				<div>
+					<input type="checkbox" />Cancións <input type="checkbox" />Álbums <input
+						type="checkbox" />Playlists
 				</div>
-							
-			</a>			
-		</div>
-		
-		<div class="bar">			
-			<!-- Barra de navegación, Categorías, o similar -->
-			<p>Estrategia | RPG | Guerra | Ciencia FicciÃ³n </p>
-		</div>
-		
-		<!-- Inicio del frame / tile / sección de contenido -->
-		<div class="content">
-		
+			</form>
+		</nav>
+		<section>

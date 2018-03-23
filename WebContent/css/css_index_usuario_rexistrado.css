@@ -3,13 +3,19 @@
     padding: 0px;
 }
 
+body{
+	background-image: url('../img/index-background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 
 #contenedor{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: "header header header header header header header header header header header header"
-                         "nav nav nav section section section section section section section section section"
+                         "nav nav nav section section section section section section section section section";
 }
 
 
