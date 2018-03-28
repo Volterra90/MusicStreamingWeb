@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,25 +13,20 @@
 	<div id="contenedor">
 		<header>
 			<div>
-				<img src="../../img/home-icon.png" /> <a href="">AS MIÑAS
-					PLAYLISTS</a>
+				<a href="/MusicStreamingWeb/html/index/index.jsp"><img src="../../img/home-icon.png" id="home" /></a> 
+				<a href="">AS MIÑAS PLAYLISTS</a>
 			</div>
-			<img src="../../img/logo_sin_texto.png" class="logo" />
+			<div></div>
+			<div></div>
 			<div>
-				
-			</div>
-			<div>
-				<img src="../../img/logout.png" /> <a href="">EN</a> | <a href="">GL</a>
+				<%@include file="/html/user/user-profile.jsp"%>
+					<a href="/MusicStreamingWeb/SignOutServlet">
+						<img src="../../img/logout.png" id="signout-logo"/>
+					</a> 
+					<a href="">EN</a> | <a href="">GL</a>
 			</div>
 		</header>
 		<nav>
-			<form>
-				<legend>Búsqueda</legend>
-				<input type="text" />
-				<div>
-					<input type="checkbox" />Cancións <input type="checkbox" />Álbums <input
-						type="checkbox" />Playlists
-				</div>
-			</form>
+			<%@include file="/html/content/content-search.jsp" %>
 		</nav>
 		<section>

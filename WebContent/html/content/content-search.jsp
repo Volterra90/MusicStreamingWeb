@@ -1,33 +1,16 @@
-<%@include file="/html/common/header.jsp"%>
-
-<%@page import="com.musicstreaming.streaming.model.*, java.util.*"%>
-<h3>Búsqueda de pedido por País</h3>
-<!-- Formulario de búsqueda -->
-<form action="/SacraWeb/OrderSearchServlet" method="POST">
-	<input type="text" name="contido" placeholder="título" /> <br>
-	<input type="submit" value="Submit">
+<%@page
+	import="com.musicstreaming.streaming.web.controller.ParameterNames"%>
+<form action="/MusicStreamingWeb/ContentSearchServlet" method="POST">
+	<h2>Búsqueda</h2>
+	<input type="text" name="<%=ParameterNames.NOMECONTIDO%>"/>
+	<div>
+		<input type="checkbox" name="<%=ParameterNames.CANCION%>"/>Cancións 
+		<input type="checkbox" name="<%=ParameterNames.ALBUM%>"/>Álbums
+		<input type="checkbox" name="<%=ParameterNames.PLAYLIST%>"/>Playlists
+	</div>
+	<div>
+		<h3>Artista</h3>
+	</div>
+	<input type="text" name="<%=ParameterNames.ARTISTA%>"/>
+	<input type="submit" value="Buscar"/>
 </form>
-<!-- Busca y muestra los resultados -->
-<%	
-		List<Contido> contidos = (List<Contido>) request.getAttribute("pedidos");
-		
-		if (contidos!=null) {
-			%><h3>Resultados de búsqueda:</h3><% 
-			for (Contido c: contidos){
-			
-				%> 
-
-<p><%=c.getNome()%></p>
-<p><%=c.getDuracion()%></p>
-<%
-			}
-		}
-			else {
-				if (request.getAttribute("error")!=null){
-				%>
-<p><%=request.getAttribute("error")%></p>
-<%
-				}
-			}
-			%>
-<%@include file="/html/common/footer.jsp"%>

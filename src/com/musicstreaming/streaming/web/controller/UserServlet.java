@@ -88,14 +88,15 @@ public class UserServlet extends HttpServlet {
 					}
 				}
 				if (redirect) {
-					response.sendRedirect(request.getContextPath()+ViewsPaths.SIGN_IN);
+					response.sendRedirect(request.getContextPath()+ViewsPaths.INDEX);
 				} else {
 					request.getRequestDispatcher(target).forward(request, response);
 				}
 				
 			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO Pendiente de explicar
+				logger.error(e.getMessage(),e);
+				request.setAttribute(AttributeNames.ERROR, e.getMessage());
+				request.getRequestDispatcher(ViewsPaths.SIGN_IN).forward(request, response);
 			}
 			
 		}

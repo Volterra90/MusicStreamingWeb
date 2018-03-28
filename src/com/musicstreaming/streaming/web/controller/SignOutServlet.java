@@ -18,8 +18,8 @@ public class SignOutServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true).setAttribute("user", null);
-		response.sendRedirect("/SacraWeb");
+		request.getSession(true).setAttribute(AttributeNames.USER, null);
+		response.sendRedirect(request.getContextPath()+ViewsPaths.SIGN_IN);
 	}
 
 	

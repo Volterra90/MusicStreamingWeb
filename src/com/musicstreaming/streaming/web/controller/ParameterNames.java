@@ -18,4 +18,11 @@ public interface ParameterNames {
 	public static final String FECHA = "fecha";
 	public static final String XENERO = "xenero";
 	
+	//Parámetros de búsqueda
+	public static final String NOMECONTIDO = "nomecontido";
+	public static final String CANCION = "cancion";
+	public static final String ALBUM = "album";
+	public static final String PLAYLIST = "playlist";
+	public static final String ARTISTA = "artista";
+	
 }

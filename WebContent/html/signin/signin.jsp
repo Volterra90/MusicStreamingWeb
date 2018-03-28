@@ -20,7 +20,7 @@
                     <label for="nome">Nome de usuario/correo electrónico:</label>
                     <input type="text" name="<%=ParameterNames.NOME%>" id="nome"/>
                     <label for="contrasinal">Contrasinal:</label>
-                    <input type="text" name="<%=ParameterNames.PASSWORD%>" id="contrasinal"/>
+                    <input type="password" name="<%=ParameterNames.PASSWORD%>" id="contrasinal"/>
                     <div>
                         <input type="checkbox" id="recordar_usuario"/>
                         <label for="recordar_usuario" class="dos_columnas">Recordar usuario</label>

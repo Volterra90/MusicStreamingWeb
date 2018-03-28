@@ -3,15 +3,12 @@
     padding: 0px;
 }
 
-body{
-	background-image: url('../img/index-background.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
 
 #contenedor{
     display: grid;
+    background-image: url('../img/index-background.jpg');
+    background-repeat: no-repeat;
+	background-size: cover;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: "header header header header header header header header header header header header"
@@ -32,10 +29,16 @@ header>div{
     align-items: center;
 }
 
-header > div > img{
-    width: 40px;
-    height: 40px;
-    padding: 10px;
+#signout-logo{
+    width: 40px !important;
+    height: 40px !important;
+    padding: 10px !important;
+}
+
+#home{
+	width: 40px !important;
+    height: 40px !important;
+    padding: 10px !important;
 }
 
 header > div > a{
@@ -71,6 +74,10 @@ nav > form> div > input{
 section{
     grid-area: section;
     background-color: rgba(39, 175, 134, 0.8);
+}
+
+section > div{
+	padding: 20px;
 }
 
 form{

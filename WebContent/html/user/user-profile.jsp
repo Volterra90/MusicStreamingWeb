@@ -9,7 +9,7 @@
 		<%
 	} else {
 		%>
-		<a href="/SacraWeb/html/signin/signin.jsp">Identifícate</a>
+		<a href="/MusicStreamingWeb/html/signin/signin.jsp">Identifícate</a>
 		<%
 	}
 %>
