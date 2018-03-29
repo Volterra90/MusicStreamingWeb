@@ -25,4 +25,7 @@ public interface ParameterNames {
 	public static final String PLAYLIST = "playlist";
 	public static final String ARTISTA = "artista";
 	
+	//Precarga index
+	public static final String nTop = "nTop";
+	
 }

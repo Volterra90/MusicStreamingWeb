@@ -13,6 +13,12 @@ public interface AttributeNames {
 	public static final String MISSING_PARAMETER_ERROR = "missing.error";
 	public static final String USER_NOT_FOUND_ERROR = "user.not.found.error";
 	
+	//Top contidos
+	public static final String TOP_N_CANCIONS = "top.cancions";
+	public static final String TOP_N_ALBUMS = "top.albums";
+	public static final String TOP_N_PLAYLISTS = "top.playlists";
+	public static final String BOOLEAN = "boolean";
+	
 	
 	
 }
