@@ -39,18 +39,14 @@ public class IndexServlet extends HttpServlet {
 		request.setAttribute(AttributeNames.TOP_N_CANCIONS, topCancions);
 		request.setAttribute(AttributeNames.TOP_N_ALBUMS, topAlbums);
 		request.setAttribute(AttributeNames.TOP_N_PLAYLISTS, topPlaylists);
-		
-		String cargar = "c";
-		request.setAttribute(AttributeNames.BOOLEAN, cargar);
-		
-		
-		request.getRequestDispatcher(ViewsPaths.INDEX).forward(request, response);
+			
+		request.getRequestDispatcher(ViewsPaths.INDEX_JSP).forward(request, response);
 		}
 		
 		catch (Exception e){
 			logger.error(e.getMessage(),e);
 			request.setAttribute(AttributeNames.ERROR, e.getMessage());
-			request.getRequestDispatcher(ViewsPaths.INDEX).forward(request, response);
+			request.getRequestDispatcher(ViewsPaths.INDEX_JSP).forward(request, response);
 		}
 		
 	}

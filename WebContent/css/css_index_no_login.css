@@ -24,6 +24,7 @@ header > img{
 header{
     grid-area: header;
     justify-self: center;
+    position: fixed;
 }
 
 section{

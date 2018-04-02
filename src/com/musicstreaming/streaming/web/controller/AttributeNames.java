@@ -6,7 +6,9 @@ public interface AttributeNames {
 	public static final String USER = "user";
 	
 	//Resultados de búsqueda
-	public static final String CONTIDOS = "contidos";
+	public static final String CANCIONS = "cancions";
+	public static final String ALBUMS = "albums";
+	public static final String PLAYLISTS = "playlists";
 	
 	// Codigos de error
 	public static final String GENERIC_ERROR = "generic.error";

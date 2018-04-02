@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 
@@ -10,10 +11,10 @@
     background-repeat: no-repeat;
 	background-size: cover;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 100px 900px;
     grid-template-areas: "header header header header header header header header header header header header"
                          "nav nav nav section section section section section section section section section";
-    height: 1080px;
+     
 }
 
 
@@ -24,6 +25,7 @@ header{
     display: flex;
     flex-direction: row;
     justify-content:space-around;
+    height: 100px;
 }
 
 header>div{

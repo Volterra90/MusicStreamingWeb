@@ -13,7 +13,7 @@
 	<div id="contenedor">
 		<header>
 			<div>
-				<a href="/MusicStreamingWeb/html/index/index.jsp"><img src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
+				<a href="/MusicStreamingWeb/IndexServlet"><img src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
 				<a href="">AS MIÑAS PLAYLISTS</a>
 			</div>
 			<div></div>
