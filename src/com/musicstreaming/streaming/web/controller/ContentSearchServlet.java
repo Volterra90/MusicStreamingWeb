@@ -40,26 +40,25 @@ public class ContentSearchServlet extends HttpServlet {
 		ContidoCriteria cc = new ContidoCriteria();
 
 		try{
-			Character [] tipos = new Character [3];
+			
+			List<Character> tipos = new ArrayList<Character>();
+			
+			
 			if (request.getParameter(ParameterNames.CANCION)!=null){
-				tipos [0] = 'C';
+				tipos.add('C');
 			}
-			else{
-				tipos[0] = 'D';
-			}
+			
 			if (request.getParameter(ParameterNames.ALBUM)!=null){
-				tipos [1] = 'A';
+				tipos.add('A');
 			}
-			else{
-				tipos[1] = 'D';
-			}
+						
 			if (request.getParameter(ParameterNames.PLAYLIST)!=null){
-				tipos [2] = 'P';
+				tipos.add('P');
 			}
-			else{
-				tipos[2] = 'D';
-			}
-			cc.setTipos(tipos);
+
+			
+			cc.setTipos(tipos.toArray(new Character[tipos.size()]));
+			
 			if (!StringUtils.isEmpty(request.getParameter(ParameterNames.ARTISTA))){
 				cc.setNomeArtista(request.getParameter(ParameterNames.ARTISTA));
 			}
@@ -78,13 +77,13 @@ public class ContentSearchServlet extends HttpServlet {
 			List<Playlist> playlists = new ArrayList<>();
 			
 			for (Contido c: contidos){
-				if (c.getTipo()=='C'){
+				if (c instanceof Cancion) {
 					cancions.add((Cancion)c);
 				}
-				if (c.getTipo()=='A'){
+				if (c instanceof Album){
 					albums.add((Album)c);
 				}
-				if (c.getTipo()=='P'){
+				if (c instanceof Playlist){
 					playlists.add((Playlist)c);
 					
 				}

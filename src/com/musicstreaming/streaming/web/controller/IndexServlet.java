@@ -17,7 +17,8 @@ import com.musicstreaming.streaming.model.TipoContido;
 import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
 
-@WebServlet("/IndexServlet")
+@WebServlet("/home.html")
+
 public class IndexServlet extends HttpServlet {
 	
 	private static Logger logger = LogManager.getLogger(IndexServlet.class.getName());
