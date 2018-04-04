@@ -21,6 +21,11 @@ public interface AttributeNames {
 	public static final String TOP_N_PLAYLISTS = "top.playlists";
 	public static final String BOOLEAN = "boolean";
 	
+	//Atributos búsqueda albums
+	public static final String CANCIONS_ALBUM = "cancions.album";
+	public static final String ALBUM = "album";
+	public static final String ARTISTA = "artista";
+	
 	
 	
 }

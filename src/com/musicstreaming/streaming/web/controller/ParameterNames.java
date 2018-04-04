@@ -18,14 +18,19 @@ public interface ParameterNames {
 	public static final String FECHA = "fecha";
 	public static final String XENERO = "xenero";
 	
-	//Parámetros de búsqueda
+	//Parámetros do formulario de búsqueda
 	public static final String NOMECONTIDO = "nomecontido";
 	public static final String CANCION = "cancion";
 	public static final String ALBUM = "album";
 	public static final String PLAYLIST = "playlist";
 	public static final String ARTISTA = "artista";
 	
-	//Precarga index
-	public static final String nTop = "nTop";
+	//Parámetros que definen o tipo de búsqueda
+	public static final String BUSQUEDACONTIDO = "busquedacontido";
+	public static final String BUSQUEDAALBUM = "busquedaalbum";
+	
+	//Parámetros necesarios para renderizar a .jsp de albumes
+	public static final String IDARTISTA = "idArtista";
+	public static final String IDALBUM = "idAlbum";
 	
 }

@@ -17,7 +17,7 @@ import com.musicstreaming.streaming.model.TipoContido;
 import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
 
-@WebServlet("/home.html")
+@WebServlet("/IndexServlet")
 
 public class IndexServlet extends HttpServlet {
 	

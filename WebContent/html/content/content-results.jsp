@@ -30,7 +30,8 @@
 			<div>
 				
 				<ul>
-					<li><%=a.getNome()%></li>
+					<li><a href="/MusicStreamingWeb/ContentSearchServlet?idAlbum=<%=a.getCodContido()%>&idArtista=<%=a.getCodArtista()%>
+					&action=<%=ParameterNames.BUSQUEDAALBUM%>"><%=a.getNome()%></a></li>
 				</ul>
 			</div>
 			<%

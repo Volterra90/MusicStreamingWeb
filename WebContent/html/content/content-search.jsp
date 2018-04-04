@@ -1,6 +1,7 @@
 <%@page
 	import="com.musicstreaming.streaming.web.controller.ParameterNames"%>
 <form action="/MusicStreamingWeb/ContentSearchServlet" method="POST">
+	<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ParameterNames.BUSQUEDACONTIDO%>"/>
 	<h2>Búsqueda</h2>
 	<input type="text" name="<%=ParameterNames.NOMECONTIDO%>"/>
 	<div>
