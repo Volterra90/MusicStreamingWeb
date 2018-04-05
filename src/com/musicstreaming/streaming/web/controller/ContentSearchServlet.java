@@ -56,12 +56,12 @@ public class ContentSearchServlet extends HttpServlet {
 				List<Character> tipos = new ArrayList<Character>();
 
 
-				if (request.getParameter(ParameterNames.CANCION)!=null){
-					tipos.add('C');
-				}
-
 				if (request.getParameter(ParameterNames.ALBUM)!=null){
 					tipos.add('A');
+				}
+
+				if (request.getParameter(ParameterNames.CANCION)!=null){
+					tipos.add('C');
 				}
 
 				if (request.getParameter(ParameterNames.PLAYLIST)!=null){
@@ -114,16 +114,16 @@ public class ContentSearchServlet extends HttpServlet {
 		}
 		
 		if (ParameterNames.BUSQUEDAALBUM.equalsIgnoreCase(action)) {
+			
 			int startIndex = 1;
 			int count = 50;
 			try {
 				List<Cancion> cancionsAlbum = cancionService.findByGrupo(startIndex, count,Long.valueOf(request.getParameter(ParameterNames.IDALBUM)));
 				request.setAttribute(AttributeNames.CANCIONS_ALBUM, cancionsAlbum);
-				Contido album = contidoService.findById(Long.valueOf(request.getParameter(ParameterNames.IDALBUM)));
-				request.setAttribute(AttributeNames.ALBUM, album);
+				
 				Artista artista = artistaService.findById(Long.valueOf(request.getParameter(ParameterNames.IDARTISTA)));
 				request.setAttribute(AttributeNames.ARTISTA, artista);
-				response.sendRedirect(request.getContextPath()+ViewsPaths.ALBUM_JSP);
+				request.getRequestDispatcher(ViewsPaths.ALBUM_JSP).forward(request,response);
 			}
 			catch (Exception e) {
 				logger.error(e.getMessage(), e);
