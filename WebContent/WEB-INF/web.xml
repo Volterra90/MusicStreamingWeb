@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>SacraWeb</display-name>
+  <display-name>MusicStreamingWeb</display-name>
   <welcome-file-list>
         <welcome-file>/IndexServlet</welcome-file>
   </welcome-file-list>  
@@ -34,22 +34,15 @@
   </error-page>       
 
 	     
-    <!-- ========================== Filters ============================ -->
-  <!--  Si quisieramos configurar los filtros aqui en lugar de con anotaciones en las clases -->
-  <!-- 
-	<filter>
-	   <filter-name>InitSessionFilter</filter-name>
-	   <filter-class>com.sacra.ecommerce.web.filter.InitSessionFilter</filter-class>
-	   <init-param>
-	      <param-name>nombreparametro</param-name>
-	      <param-value>valor</param-value>
-	   </init-param>
-	</filter>
+<filter>
+   <filter-name>InitSessionFilter</filter-name>
+   <filter-class>com.musicstreaming.streaming.web.filter.InitSessionFilter</filter-class>
+</filter>
 
-	<filter-mapping>
-	   <filter-name>InitSessionFilter</filter-name>
-	   <url-pattern>/*</url-pattern>
-	</filter-mapping>  
-	-->
+<filter-mapping>
+   <filter-name>InitSessionFilter</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping>  
+	
 
 </web-app>
