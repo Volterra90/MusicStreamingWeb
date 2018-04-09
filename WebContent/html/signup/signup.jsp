@@ -1,9 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page import="com.musicstreaming.streaming.web.controller.ParameterNames, java.util.*, com.musicstreaming.streaming.web.util.*"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
- 	<%
-	Locale locale = (Locale) SessionManager.get(request, WebConstants.USER_LOCALE);
-%>
+
+
+<fmt:setLocale value='${sessionScope["user-locale"]}' scope="session"/>
+<fmt:setBundle basename = "resources.Messages" var = "messages" scope="session"/>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +23,7 @@
                 <form action="/MusicStreamingWeb/UserServlet" method="POST">
                 	<legend class="dos_cols"><strong></strong></legend>
                 	<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ParameterNames.SIGNUP%>"/>
-                    <label for="nome">Nome:</label>
+                    <label for="nome"><fmt:message key="Nome" bundle="${messages}"/>:</label>
                     <input type="text" name="<%=ParameterNames.NOME%>" id="nome"/>
                     <label for="apelidos">Apelidos:</label>
                     <input type="text" name="<%=ParameterNames.APELIDOS%>" id="apelidos"/>
