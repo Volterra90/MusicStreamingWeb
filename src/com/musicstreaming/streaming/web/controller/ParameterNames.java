@@ -8,6 +8,7 @@ public interface ParameterNames {
 	//Tipos de acción
 	public static final String SIGNUP = "signup";
 	public static final String SIGNIN ="signin";
+	public static final String CHANGE_LOCALE = "change-locale";
 	
 	//Parámetros de rexistro
 	public static final String NOME = "nome";
@@ -32,5 +33,8 @@ public interface ParameterNames {
 	//Parámetros necesarios para renderizar a .jsp de albumes
 	public static final String IDARTISTA = "idArtista";
 	public static final String IDALBUM = "idAlbum";
+	
+	//Parámetros de idioma
+	public static final String LOCALE = "locale";
 	
 }

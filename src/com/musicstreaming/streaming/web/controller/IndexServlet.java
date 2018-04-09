@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.musicstreaming.streaming.model.Contido;
+import com.musicstreaming.streaming.model.Album;
+import com.musicstreaming.streaming.model.Cancion;
+import com.musicstreaming.streaming.model.Playlist;
 import com.musicstreaming.streaming.model.TipoContido;
 import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
@@ -34,9 +36,9 @@ public class IndexServlet extends HttpServlet {
 		
 		int n = 5;
 		try{
-		List<Contido> topCancions=contidoService.findTopN(n,TipoContido.CANCION);
-		List<Contido> topAlbums=contidoService.findTopN(n,TipoContido.ALBUM);
-		List<Contido> topPlaylists=contidoService.findTopN(n,TipoContido.PLAYLIST);
+		List<Cancion> topCancions= (List<Cancion>)contidoService.findTopN(n,TipoContido.CANCION);
+		List<Album> topAlbums= (List<Album>)contidoService.findTopN(n,TipoContido.ALBUM);
+		List<Playlist> topPlaylists=(List<Playlist>)contidoService.findTopN(n,TipoContido.PLAYLIST);
 		request.setAttribute(AttributeNames.TOP_N_CANCIONS, topCancions);
 		request.setAttribute(AttributeNames.TOP_N_ALBUMS, topAlbums);
 		request.setAttribute(AttributeNames.TOP_N_PLAYLISTS, topPlaylists);

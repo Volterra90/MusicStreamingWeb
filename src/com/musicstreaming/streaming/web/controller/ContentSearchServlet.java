@@ -48,10 +48,10 @@ public class ContentSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter(ParameterNames.ACTION);
 		ContidoCriteria cc = new ContidoCriteria();
+		if(ParameterNames.BUSQUEDACONTIDO.equalsIgnoreCase(action)) {
+			try{
 
-		try{
-
-			if(ParameterNames.BUSQUEDACONTIDO.equalsIgnoreCase(action)) {
+			
 
 				List<Character> tipos = new ArrayList<Character>();
 
@@ -83,7 +83,7 @@ public class ContentSearchServlet extends HttpServlet {
 
 
 
-				List<Contido> contidos= contidoService.findByCriteria(cc,1,10);
+				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,10);
 				List<Cancion> cancions = new ArrayList<>();
 				List<Album> albums = new ArrayList<>();
 				List<Playlist> playlists = new ArrayList<>();
@@ -106,22 +106,31 @@ public class ContentSearchServlet extends HttpServlet {
 
 				request.getRequestDispatcher(ViewsPaths.CONTENTRESULTS).forward(request, response);
 			}
-		}
+		
 		catch (Exception e){
 			logger.error(e.getMessage(), e);
 			request.setAttribute(AttributeNames.ERROR, e.getMessage());
 			request.getRequestDispatcher(ViewsPaths.INDEX).forward(request, response);
 		}
 		
-		if (ParameterNames.BUSQUEDAALBUM.equalsIgnoreCase(action)) {
+		}else if (ParameterNames.BUSQUEDAALBUM.equalsIgnoreCase(action)) {
 			
 			int startIndex = 1;
 			int count = 50;
 			try {
+				Long idArtista = Long.valueOf(request.getParameter(ParameterNames.IDARTISTA));
+				Artista artista = artistaService.findById(idArtista);
+				Character[] tipoAlbum = new Character['A'];
+				cc.setCodArtista(idArtista);
+				cc.setTipos(tipoAlbum);
+				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);
+				for (Album a: albumes) {
+					
+				}
 				List<Cancion> cancionsAlbum = cancionService.findByGrupo(startIndex, count,Long.valueOf(request.getParameter(ParameterNames.IDALBUM)));
 				request.setAttribute(AttributeNames.CANCIONS_ALBUM, cancionsAlbum);
 				
-				Artista artista = artistaService.findById(Long.valueOf(request.getParameter(ParameterNames.IDARTISTA)));
+				
 				request.setAttribute(AttributeNames.ARTISTA, artista);
 				request.getRequestDispatcher(ViewsPaths.ALBUM_JSP).forward(request,response);
 			}

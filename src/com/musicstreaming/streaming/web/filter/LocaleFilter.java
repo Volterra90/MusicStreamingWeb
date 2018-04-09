@@ -1,4 +1,4 @@
-package com.sacra.ecommerce.web.filter;
+package com.musicstreaming.streaming.web.filter;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.sacra.ecommerce.web.util.CookieManager;
-import com.sacra.ecommerce.web.util.LocaleManager;
-import com.sacra.ecommerce.web.util.SessionManager;
-import com.sacra.ecommerce.web.util.WebConstants;
+import com.musicstreaming.streaming.web.util.CookieManager;
+import com.musicstreaming.streaming.web.util.LocaleManager;
+import com.musicstreaming.streaming.web.util.SessionManager;
+import com.musicstreaming.streaming.web.util.WebConstants;
 
 /**
  * Filtro para inicializacion del Locale

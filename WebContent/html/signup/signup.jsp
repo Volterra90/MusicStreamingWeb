@@ -1,6 +1,9 @@
-<%@page import="com.musicstreaming.streaming.web.controller.ParameterNames"%>
+<%@page import="com.musicstreaming.streaming.web.controller.ParameterNames, java.util.*, com.musicstreaming.streaming.web.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ 	<%
+	Locale locale = (Locale) SessionManager.get(request, WebConstants.USER_LOCALE);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +18,7 @@
             </header>
             <section>
                 <form action="/MusicStreamingWeb/UserServlet" method="POST">
-                	<legend class="dos_cols"><strong>REXISTRO</strong></legend>
+                	<legend class="dos_cols"><strong></strong></legend>
                 	<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ParameterNames.SIGNUP%>"/>
                     <label for="nome">Nome:</label>
                     <input type="text" name="<%=ParameterNames.NOME%>" id="nome"/>
@@ -40,7 +43,7 @@
                         <input type="radio" name="<%=ParameterNames.XENERO%>" value="M"> Muller
                         <input type="radio" name="<%=ParameterNames.XENERO%>" value="O"> Outro
                     </div>                                    
-                    <input type="submit" value="REXISTRARSE" class="dos_cols">
+                    <input type="submit" value="Rexistrarse" class="dos_cols">
                 </form>
             </section>
         </div>

@@ -3,6 +3,8 @@ package com.musicstreaming.streaming.web.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,9 @@ import com.musicstreaming.streaming.service.impl.UsuarioServiceImpl;
 import com.musicstreaming.streaming.util.PasswordEncryptionUtil;
 import com.musicstreaming.streaming.util.ToStringUtil;
 import com.musicstreaming.streaming.web.util.CookieManager;
+import com.musicstreaming.streaming.web.util.LocaleManager;
 import com.musicstreaming.streaming.web.util.SessionManager;
+import com.musicstreaming.streaming.web.util.WebConstants;
 
 /**
  * Servlet de Usuario
@@ -36,9 +40,11 @@ public class UserServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter(ParameterNames.ACTION);		
-		try {
+		String action = request.getParameter(ParameterNames.ACTION);	
+		String target = null;
+		boolean redirect = false;
 			if (ParameterNames.SIGNUP.equalsIgnoreCase(action)) {
+				try {
 				Usuario u = new Usuario();
 				u.setApelidos(request.getParameter(ParameterNames.APELIDOS));
 				u.setContrasinal(PasswordEncryptionUtil.encryptPassword(request.getParameter(ParameterNames.PASSWORD)));
@@ -58,19 +64,16 @@ public class UserServlet extends HttpServlet {
 
 				usuarioService.create(u);
 				response.sendRedirect(request.getContextPath()+ViewsPaths.SIGN_IN);
-			}
 		}catch (Throwable e) {			
 			logger.error(e.getMessage(),e);
 			request.setAttribute(AttributeNames.ERROR, e.getMessage());
 			request.getRequestDispatcher(ViewsPaths.SIGN_UP).forward(request, response);
 		}
 		
-		if (ParameterNames.SIGNIN.equalsIgnoreCase(action)) {
+		}else if (ParameterNames.SIGNIN.equalsIgnoreCase(action)) {
 			String userName = request.getParameter(ParameterNames.NOME);
 			String password = request.getParameter(ParameterNames.PASSWORD);
 						
-			String target = null;
-			boolean redirect = false;
 			try {
 				Usuario usuario = usuarioService.findUserById(userName);			
 				if (usuario==null) {
@@ -100,6 +103,31 @@ public class UserServlet extends HttpServlet {
 			}
 			
 		}
+			
+		else if (ParameterNames.CHANGE_LOCALE.equalsIgnoreCase(action)) {
+    		String localeName = request.getParameter(ParameterNames.LOCALE);
+    		// Recordar que hay que validar... lo que nos envian, incluso en algo como esto.
+    		// Buscamos entre los Locale soportados por la web:
+    		List<Locale> results = LocaleManager.getMatchedLocales(localeName);
+    		Locale newLocale = null;
+    		if (results.size()>0) {
+    			newLocale = results.get(0);
+    		} else {
+    			logger.warn("Request locale not supported: "+localeName);
+    			newLocale = LocaleManager.getDefault();
+    		}
+    		
+			SessionManager.set(request, WebConstants.USER_LOCALE, newLocale);			
+			CookieManager.addCookie(response, WebConstants.USER_LOCALE, newLocale.toString(), "/", 365*24*60*60);
+			
+			if (logger.isDebugEnabled()) {
+				logger.debug("Locale changed to "+newLocale);
+			}
+			
+			target = request.getContextPath(); // Ejercicio: como hacer que siga en la misma URL		
+			redirect = true;
+			
+    	}
 	}
 
 	/**

@@ -23,7 +23,7 @@
 					<a href="/MusicStreamingWeb/SignOutServlet">
 						<img src="/MusicStreamingWeb/img/logout.png" id="signout-logo"/>
 					</a> 
-					<a href="">EN</a> | <a href="">GL</a>
+				<%@include file="/html/user/languages.jsp"%>
 			</div>
 		</header>
 		<nav>

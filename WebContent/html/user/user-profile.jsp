@@ -3,14 +3,11 @@
 <%
 
 	Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
-	if (usuario!=null) {
 		%>
+		<% if (usuario!=null){ %>
 		<p>Benvido <%=usuario.getNick()%></p>
-		<%
-	} else {
-		%>
-		<a href="/MusicStreamingWeb/html/signin/signin.jsp">Identifícate</a>
-		<%
-	}
+		<%}else{%>
+			<p>Identifícate</p>
+		<%}
 %>
 

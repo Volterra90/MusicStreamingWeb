@@ -8,6 +8,7 @@
 			<div>
 			<h3><%=artista.getNomeArtista()%></h3>
 			</div>
+				
 			
 			<div>
 				
