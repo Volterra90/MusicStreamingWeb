@@ -123,15 +123,10 @@ public class ContentSearchServlet extends HttpServlet {
 				Character[] tipoAlbum = new Character['A'];
 				cc.setCodArtista(idArtista);
 				cc.setTipos(tipoAlbum);
-				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);
-				for (Album a: albumes) {
-					
-				}
-				List<Cancion> cancionsAlbum = cancionService.findByGrupo(startIndex, count,Long.valueOf(request.getParameter(ParameterNames.IDALBUM)));
-				request.setAttribute(AttributeNames.CANCIONS_ALBUM, cancionsAlbum);
-				
+				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);	
 				
 				request.setAttribute(AttributeNames.ARTISTA, artista);
+				request.setAttribute(AttributeNames.ALBUMS,  albumes);
 				request.getRequestDispatcher(ViewsPaths.ALBUM_JSP).forward(request,response);
 			}
 			catch (Exception e) {

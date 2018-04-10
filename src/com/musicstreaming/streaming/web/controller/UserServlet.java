@@ -63,7 +63,8 @@ public class UserServlet extends HttpServlet {
 				}
 
 				usuarioService.create(u);
-				response.sendRedirect(request.getContextPath()+ViewsPaths.SIGN_IN);
+				target = request.getContextPath();
+				redirect = true;
 		}catch (Throwable e) {			
 			logger.error(e.getMessage(),e);
 			request.setAttribute(AttributeNames.ERROR, e.getMessage());
@@ -86,15 +87,13 @@ public class UserServlet extends HttpServlet {
 					} else {
 						SessionManager.set(request, SessionAttributeNames.USER, usuario);
 						CookieManager.addCookie(response, "login", usuario.getEmail(), "/", 30*24*60*60);
-						target = ViewsPaths.INDEX;
+						target = request.getContextPath()+ViewsPaths.INDEX;
 						redirect = true;
 					}
 				}
-				if (redirect) {
-					response.sendRedirect(request.getContextPath()+ViewsPaths.INDEX);
-				} else {
-					request.getRequestDispatcher(target).forward(request, response);
-				}
+
+
+				
 				
 			} catch (Exception e) {
 				logger.error(e.getMessage(),e);
@@ -110,6 +109,7 @@ public class UserServlet extends HttpServlet {
     		// Buscamos entre los Locale soportados por la web:
     		List<Locale> results = LocaleManager.getMatchedLocales(localeName);
     		Locale newLocale = null;
+    		try {
     		if (results.size()>0) {
     			newLocale = results.get(0);
     		} else {
@@ -124,11 +124,21 @@ public class UserServlet extends HttpServlet {
 				logger.debug("Locale changed to "+newLocale);
 			}
 			
-			target = request.getContextPath(); // Ejercicio: como hacer que siga en la misma URL		
+			target = ViewsPaths.INDEX; // Ejercicio: como hacer que siga en la misma URL		
 			redirect = true;
 			
+    	}catch (Exception e) {
+				logger.error(e.getMessage(),e);
+				request.setAttribute(AttributeNames.ERROR, e.getMessage());
+				request.getRequestDispatcher(ViewsPaths.SIGN_IN).forward(request, response);
+			}
+		}	
+		if (redirect) {
+    		response.sendRedirect(target);
+    	} else {
+    		request.getRequestDispatcher(target).forward(request, response);
     	}
-	}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

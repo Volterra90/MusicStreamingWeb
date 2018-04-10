@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value='${sessionScope["user-locale"]}' scope="session"/>
+<fmt:setBundle basename = "resources.Messages" var = "messages" scope="session"/>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +18,7 @@
 		<header>
 			<div>
 				<a href="/MusicStreamingWeb/IndexServlet"><img src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
-				<a href="">AS MIÑAS PLAYLISTS</a>
+				<a href=""><fmt:message key="As_minhas_playlists" bundle="${messages}"/></a>
 			</div>
 			<div></div>
 			<div></div>

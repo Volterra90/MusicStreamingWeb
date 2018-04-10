@@ -5,7 +5,7 @@
 	Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
 		%>
 		<% if (usuario!=null){ %>
-		<p>Benvido <%=usuario.getNick()%></p>
+		<p><fmt:message key="Benvida" bundle="${messages}"/> <%=usuario.getNick()%></p>
 		<%}else{%>
 			<p>Identifícate</p>
 		<%}

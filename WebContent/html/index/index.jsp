@@ -2,7 +2,7 @@
 <%@page import="com.musicstreaming.streaming.web.controller.AttributeNames, java.util.*"%>
 <%@include file="/html/common/header.jsp"%>
 			<div>
-				<h1>Top 5 Cancións</h1></a>
+				<h1><fmt:message key="Top_cancions" bundle="${messages}"/>:</h1>
 				<ul>
 			<%
 			List<Contido> topCancions = (List<Contido>) request.getAttribute(AttributeNames.TOP_N_CANCIONS);
@@ -13,7 +13,7 @@
 			<%}%>
 			</div>
 			<div>
-				<h1>Top 5 Albums</h1></a>
+				<h1><fmt:message key="Top_albums" bundle="${messages}"/>:</h1></a>
 				<ul>
 			<%
 			List<Contido> topAlbums = (List<Contido>) request.getAttribute(AttributeNames.TOP_N_ALBUMS);
@@ -24,7 +24,7 @@
 			<%} %>
 			</div>
 			<div>
-				<h1>Top 5 Playlists</h1></a>
+				<h1><fmt:message key="Top_playlists" bundle="${messages}"/></h1></a>
 				<ul>
 			<%
 			List<Contido> topPlaylists = (List<Contido>) request.getAttribute(AttributeNames.TOP_N_PLAYLISTS);
