@@ -120,7 +120,8 @@ public class ContentSearchServlet extends HttpServlet {
 			try {
 				Long idArtista = Long.valueOf(request.getParameter(ParameterNames.IDARTISTA));
 				Artista artista = artistaService.findById(idArtista);
-				Character[] tipoAlbum = new Character['A'];
+				Character[] tipoAlbum = {'A'};
+				System.out.println(tipoAlbum);
 				cc.setCodArtista(idArtista);
 				cc.setTipos(tipoAlbum);
 				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);	
