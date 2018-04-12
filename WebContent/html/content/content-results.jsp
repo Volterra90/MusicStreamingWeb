@@ -15,23 +15,25 @@
 				
 				<ul>
 					<li><%=c.getNome()%></li>
-					<li><select>
-							<option value="1">1</option>
-  							<option value="2">2</option>
-  							<option value="3">3</option>
-  							<option value="4">4</option>
-  							<option value="5">5</option>
-  							<option value="6">6</option>
-  							<option value="7">7</option>
-  							<option value="8">8</option>
-  							<option value="9">9</option>
-  							<option value="10">10</option>
-						</select>
-					</li>
+					<li><%=c.getMedia()%></li>
 					<li>
-						<form>
-							<input type="submit" />
-						</form>
+					<form action="/MusicStreamingWeb/VoteSongServlet?idContido=<%=c.getCodContido()%>" method="POST">
+					<input type="hidden" name=<%=ParameterNames.VOTE_JSP %> value="<%=ViewsPaths.CONTENTRESULTS%>">
+						<select name="<%=ParameterNames.NOTA%>">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+						<input type="submit" value="Votar"/>	
+					</form>
 					</li>
 				</ul>
 			</div>

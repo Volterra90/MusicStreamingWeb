@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
 				}
 
 				usuarioService.create(u);
-				target = request.getContextPath();
+				target = ViewsPaths.SIGN_IN;
 				redirect = true;
 		}catch (Throwable e) {			
 			logger.error(e.getMessage(),e);
@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
 					} else {
 						SessionManager.set(request, SessionAttributeNames.USER, usuario);
 						CookieManager.addCookie(response, "login", usuario.getEmail(), "/", 30*24*60*60);
-						target = request.getContextPath()+ViewsPaths.INDEX;
+						target = ViewsPaths.INDEX;
 						redirect = true;
 					}
 				}

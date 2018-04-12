@@ -44,7 +44,8 @@
                         <input type="radio" name="<%=ParameterNames.XENERO%>" value="H"> <fmt:message key="Home" bundle="${messages}"/>
                         <input type="radio" name="<%=ParameterNames.XENERO%>" value="M"> <fmt:message key="Muller" bundle="${messages}"/>
                         <input type="radio" name="<%=ParameterNames.XENERO%>" value="O"> <fmt:message key="Outro" bundle="${messages}"/>
-                    </div>                                    
+                    </div>   
+                    <input type="submit" value="<fmt:message key="Rexistrarse" bundle="${messages}"/>"/>                                 
                 </form>
             </section>
         </div>

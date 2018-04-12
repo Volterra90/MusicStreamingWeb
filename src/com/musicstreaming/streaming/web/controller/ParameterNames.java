@@ -37,4 +37,10 @@ public interface ParameterNames {
 	//Parámetros de idioma
 	public static final String LOCALE = "locale";
 	
+	//Parámetros necesarios para recoller a nota da votación dunha canción
+	public static final String NOTA = "nota";
+	public static final String IDCONTIDO = "idContido";
+	
+	public static final String VOTE_JSP = "voteJSP";
+	
 }
