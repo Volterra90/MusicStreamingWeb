@@ -3,7 +3,6 @@
 
 <%@page import="com.musicstreaming.streaming.web.controller.ParameterNames, java.util.*, com.musicstreaming.streaming.web.util.*"%>
 
-
 <fmt:setLocale value='${sessionScope["user-locale"]}' scope="session"/>
 <fmt:setBundle basename = "resources.Messages" var = "messages" scope="session"/>
 
@@ -23,30 +22,29 @@
                 <form action="/MusicStreamingWeb/UserServlet" method="POST">
                 	<legend class="dos_cols"><strong></strong></legend>
                 	<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ParameterNames.SIGNUP%>"/>
-                    <label for="nome"><fmt:message key="Nome" bundle="${messages}"/>:</label>
+                    <label for="nome"><fmt:message key="Nome" bundle="${messages}"/></label>
                     <input type="text" name="<%=ParameterNames.NOME%>" id="nome"/>
-                    <label for="apelidos">Apelidos:</label>
+                    <label for="apelidos"><fmt:message key="Apelidos" bundle="${messages}"/></label>
                     <input type="text" name="<%=ParameterNames.APELIDOS%>" id="apelidos"/>
-                    <label for="nome_usuario">Nome de usuario:</label>
+                    <label for="nome_usuario"><fmt:message key="Nome_usuario" bundle="${messages}"/></label>
                     <input type="text" name="<%=ParameterNames.NICK%>" id="nome_usuario"/>
-                    <label for="email">Correo electrónico:</label>
+                    <label for="email"><fmt:message key="Correo_electronico" bundle="${messages}"/></label>
                     <input type="text" name="<%=ParameterNames.EMAIL %>" id="email"/>                   
-                    <label for="confirmar_correo">Confirma o correo electrónico:</label>
+                    <label for="confirmar_correo"><fmt:message key="Confirmar_correo" bundle="${messages}"/></label>
                     <input type="text" name="confirmar_correo" id="confirmar_correo"/>                  
-                    <label for="contrasinal">Introduzca a contrasinal:</label>
+                    <label for="contrasinal"><fmt:message key="Contrasinal" bundle="${messages}"/></label>
                     <input type="password" name="<%=ParameterNames.PASSWORD%>" id="contrasinal"/>  
-                    <label for="confirmar_contrasinal">Confirme a contrasinal:</label>
+                    <label for="confirmar_contrasinal"><fmt:message key="Confirmar_contrasinal" bundle="${messages}"/></label>
                     <input type="password" name="confirmar_contrasinal" id="confirmar_contrasinal"/>
-                    <label for="fecha_nacemento">Fecha de nacemento:</label>
+                    <label for="fecha_nacemento"><fmt:message key="Fecha_nacemento" bundle="${messages}"/></label>
                     <input type="date" name="<%=ParameterNames.FECHA%>" id="fecha_nacemento"/>
                     <label for="xénero"></label>
                     <div class="dos_cols">
-                        <p>Xénero:</p>
-                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="H"> Home
-                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="M"> Muller
-                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="O"> Outro
+                        <p><fmt:message key="Xenero" bundle="${messages}"/></p>
+                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="H"> <fmt:message key="Home" bundle="${messages}"/>
+                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="M"> <fmt:message key="Muller" bundle="${messages}"/>
+                        <input type="radio" name="<%=ParameterNames.XENERO%>" value="O"> <fmt:message key="Outro" bundle="${messages}"/>
                     </div>                                    
-                    <input type="submit" value="Rexistrarse" class="dos_cols">
                 </form>
             </section>
         </div>
