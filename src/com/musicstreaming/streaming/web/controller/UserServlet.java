@@ -124,7 +124,7 @@ public class UserServlet extends HttpServlet {
 				logger.debug("Locale changed to "+newLocale);
 			}
 			
-			target = ViewsPaths.INDEX; // Ejercicio: como hacer que siga en la misma URL		
+			target = ViewsPaths.INDEX; 		
 			redirect = true;
 			
     	}catch (Exception e) {

@@ -26,6 +26,7 @@ import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ArtistaServiceImpl;
 import com.musicstreaming.streaming.service.impl.CancionServiceImpl;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
+import com.musicstreaming.streaming.web.util.ContentUtils;
 
 
 @WebServlet("/ContentSearchServlet")
@@ -79,31 +80,31 @@ public class ContentSearchServlet extends HttpServlet {
 				}
 
 
-
-
-
-
 				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,10);
+				List<Artista> artistas = new ArrayList<>();
 				List<Cancion> cancions = new ArrayList<>();
 				List<Album> albums = new ArrayList<>();
+				List<String> duracions = new ArrayList<>();
 				List<Playlist> playlists = new ArrayList<>();
 
 				for (Contido c: contidos){
 					if (c instanceof Cancion) {
 						cancions.add((Cancion)c);
-					}
-					if (c instanceof Album){
+						artistas.add(artistaService.findById(c.getCodArtista()));
+						duracions.add(ContentUtils.getPrettyDuracion(((Cancion) c).getDuracion()));
+					} else if (c instanceof Album){
 						albums.add((Album)c);
-					}
-					if (c instanceof Playlist){
+						artistas.add(artistaService.findById(c.getCodArtista()));
+					} else if (c instanceof Playlist){
 						playlists.add((Playlist)c);
-
 					}
+					
 				}
 				request.setAttribute(AttributeNames.CANCIONS, cancions);
 				request.setAttribute(AttributeNames.ALBUMS, albums);
 				request.setAttribute(AttributeNames.PLAYLISTS, playlists);
-
+				request.setAttribute(AttributeNames.ARTISTAS, artistas);
+				request.setAttribute(AttributeNames.DURACIONS, duracions);
 				request.getRequestDispatcher(ViewsPaths.CONTENTRESULTS).forward(request, response);
 			}
 		

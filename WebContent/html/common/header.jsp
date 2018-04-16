@@ -25,15 +25,13 @@
 	$(document).ready(function() {
 		$('.votacion').change(function(event) {
 			var nota = $('.votacion').val();
-			var cancion = $(cancion);
-			console.log(cancion);
-			var idUsuario = $(idUsuario);
+			var idContido = $(this).attr('id');
+			var idUsuario = '<c:out value="${usuario.idUsuario}"/>' ;
 			console.log(idUsuario);
-			
 			$.get('VoteSongServlet', {
                 "nota" : nota,
-                "idContido": cancion.codContido,
-                "idUsuario": cancion.codUsuario
+                "idContido": idContido,
+                "idUsuario": idUsuario
             });
 		});
 	});

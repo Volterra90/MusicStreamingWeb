@@ -9,6 +9,8 @@ public interface AttributeNames {
 	public static final String CANCIONS = "cancions";
 	public static final String ALBUMS = "albums";
 	public static final String PLAYLISTS = "playlists";
+	public static final String ARTISTAS = "artistas";
+	public static final String DURACIONS = "duracions";
 	
 	// Codigos de error
 	public static final String GENERIC_ERROR = "generic.error";

@@ -9,9 +9,10 @@
     background-repeat: no-repeat;
 	background-size: cover;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px auto;
+    grid-template-rows: 100px auto auto;
     grid-template-areas: "header header header header header header header header header header header header"
-                         "nav nav nav section section section section section section section section section";
+                         "nav nav nav section section section section section section section section section"
+                         "footer footer footer footer footer footer footer footer footer footer footer footer";
      
 }
 
@@ -100,6 +101,14 @@ legend{
 
 .tabla_cancions td{
 	padding: 0px 20px;
-	border: 1px solid black;
+	border: none;
+
 }
 
+footer{
+	grid-area: footer;
+}
+
+audio{
+	width: 100%;
+}
