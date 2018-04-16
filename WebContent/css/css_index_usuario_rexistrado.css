@@ -1,17 +1,15 @@
 *{
     margin: 0px;
     padding: 0px;
-    overflow: hidden;
 }
 
 
 #contenedor{
     display: grid;
-    background-image: url('../img/index-background.jpg');
     background-repeat: no-repeat;
 	background-size: cover;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px 900px;
+    grid-template-rows: 100px auto;
     grid-template-areas: "header header header header header header header header header header header header"
                          "nav nav nav section section section section section section section section section";
      
@@ -25,7 +23,6 @@ header{
     display: flex;
     flex-direction: row;
     justify-content:space-around;
-    height: 100px;
 }
 
 header>div{
@@ -99,5 +96,10 @@ legend{
 .center{
     justify-self: center;
     padding: 0px 20px;
+}
+
+.tabla_cancions td{
+	padding: 0px 20px;
+	border: 1px solid black;
 }
 

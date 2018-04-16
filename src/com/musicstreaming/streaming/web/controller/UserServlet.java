@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
 				}
 
 				usuarioService.create(u);
-				target = ViewsPaths.SIGN_IN;
+				target = request.getContextPath()+ViewsPaths.SIGN_IN;
 				redirect = true;
 		}catch (Throwable e) {			
 			logger.error(e.getMessage(),e);
