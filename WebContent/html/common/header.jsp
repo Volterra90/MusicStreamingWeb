@@ -43,7 +43,7 @@
 			<div>
 				<a href="/MusicStreamingWeb/IndexServlet"><img
 					src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
-					<a href="/MusicStreamingWeb/PlaylistServlet?idUsuario="<c:out value="${usuario.idUsuario}"/>"><fmt:message key="As_minhas_playlists" bundle="${messages}" /></a>
+					<a href="/MusicStreamingWeb/PlaylistServlet?idUsuario=<c:out value="${usuario.idUsuario}"/>&action=<%=ParameterNames.PRELOAD_PLAYLISTS_USER%>"><fmt:message key="As_minhas_playlists" bundle="${messages}" /></a>
 			</div>
 			<div></div>
 			<div></div>

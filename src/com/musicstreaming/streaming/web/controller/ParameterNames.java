@@ -9,6 +9,7 @@ public interface ParameterNames {
 	public static final String SIGNUP = "signup";
 	public static final String SIGNIN ="signin";
 	public static final String CHANGE_LOCALE = "change-locale";
+	public static final String PRELOAD_PLAYLISTS_USER = "preload_playlists";
 	
 	//Parámetros de rexistro
 	public static final String NOME = "nome";
@@ -43,4 +44,6 @@ public interface ParameterNames {
 	
 	public static final String VOTE_JSP = "voteJSP";
 	
+	//Parámetros para a búsqueda de playlists
+	public static final String IDUSUARIO = "idUsuario";
 }
