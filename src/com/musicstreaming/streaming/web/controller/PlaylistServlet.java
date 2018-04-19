@@ -41,11 +41,26 @@ public class PlaylistServlet extends HttpServlet {
 		String action = request.getParameter(ParameterNames.ACTION);	
 		String target = null;
 		boolean redirect = false;
-			if (ParameterNames.PRELOAD_PLAYLISTS_USER.equalsIgnoreCase(action)) {
+			if (ParameterNames.CREATE_PLAYLIST.equalsIgnoreCase(action)) {
+				try {
+					Playlist p = new Playlist();
+					p.setCodEstilo(8L); //As playlists realizadas polo usuario serán do estilo "Miscelánea".
+					p.setCodUsuario(Long.valueOf(request.getParameter(ParameterNames.IDUSUARIO)));
+					p.setNome(request.getParameter(ParameterNames.NOME_PLAYLIST));
+					contidoService.create(p);
+				}
+				catch(Exception e) {
+					logger.error(e.getMessage(),e);
+					request.setAttribute(AttributeNames.ERROR, e.getMessage());
+					request.getRequestDispatcher(ViewsPaths.PLAYLIST).forward(request, response);
+				}
+			}
+			if (ParameterNames.PRELOAD_PLAYLISTS_USER.equalsIgnoreCase(action) || ParameterNames.CREATE_PLAYLIST.equalsIgnoreCase(action)) {
 				try {
 				List<Playlist> playlists = playlistService.findByUsuario(Long.valueOf(request.getParameter(ParameterNames.IDUSUARIO)));
 				request.setAttribute(AttributeNames.PLAYLISTS, playlists);
 				request.getRequestDispatcher(ViewsPaths.PLAYLIST).forward(request, response);
+				
 				}
 				catch (Exception e) {
 					logger.error(e.getMessage(),e);
@@ -54,6 +69,8 @@ public class PlaylistServlet extends HttpServlet {
 				}
 			
 			}
+			
+			
 		
 	}
 

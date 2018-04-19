@@ -3,7 +3,8 @@
 <c:set var="cancions" value="${requestScope.cancions}" scope="page" />
 <c:set var="albums" value="${requestScope.albums}" scope="page" />
 <c:set var="playlists" value="${requestScope.playlists}" scope="page" />
-<c:set var="artistas" value="${requestScope.artistas}" scope="page" />
+<c:set var="artistasCancion" value="${requestScope.artistasCancion}" scope="page" />
+<c:set var="artistasAlbum" value="${requestScope.artistasAlbum}" scope="page" />
 <c:set var="duracions" value="${requestScope.duracions}" scope="page" />
 
 <c:if test='${not empty cancions}'>
@@ -15,16 +16,16 @@
 	<table class="tabla_cancions">
 		<c:forEach items="${cancions}" var="cancion" varStatus="status">
 			<tr>
-					<td><i class="fa fa-play" onclick="updateSrc()" id="<c:out value='${cancion.codContido}'/>"></i></td>
+					<td onclick="updateSrc(this)" id="play<c:out value='${cancion.codContido}'/>"><i class="fa fa-play"></i></td>
 					<td><c:out value="${cancion.nome}" /></td>
 					<td><c:out value="${cancion.media}" /></td>
-					<td><c:out value="${artistas[status.index].nomeArtista}" /></td>
+					<td><c:out value="${artistasCancion[status.index].nomeArtista}" /></td>
 					<td><c:out value="${duracions[status.index]}" /></td>
 					<td><c:url var="servletVotacion" value="/VoteSongServlet">
 							<c:param name="idContido" value="${cancion.codContido}" />
 							<c:param name="action" value="busquedaalbum" />
 						</c:url>
-							<select id="<c:out value='${cancion.codContido}'/>" class="votacion">
+							<select id="<c:out value='${cancion.codContido}'/>" class="votacion" name="rating" autocomplete="off">
 								<option value="0">0</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -36,8 +37,14 @@
 								<option value="8">8</option>
 								<option value="9">9</option>
 								<option value="10">10</option>
-							</select>
-						</td>
+							</select> 
+							<script type="text/javascript">
+								$(function() {
+									$('#<c:out value='${cancion.codContido}'/>').barrating({
+										theme : 'fontawesome-stars'
+									});
+								});
+							</script></td>
 				</tr>
 		</c:forEach>
 	</table>
@@ -61,8 +68,8 @@
 				</c:url>
 				<li><a href="<c:out value='${urldetalle}'/>"><c:out
 							value="${album.nome}" /></a></li>
-				<li><c:out value="${artistas[status.index].nomeArtista}" /></li>
-				<li><select class="votacion">
+				<li><c:out value="${artistasAlbum[status.index].nomeArtista}" /></li>
+				<li><select id="<c:out value='${album.codContido}'/>" class="votacion">
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -74,7 +81,8 @@
 						<option value="8">8</option>
 						<option value="9">9</option>
 						<option value="10">10</option>
-				</select></li>
+				</select>
+				</li>
 			</ul>
 		</div>
 	</c:forEach>
@@ -93,4 +101,5 @@
 		</div>
 	</c:forEach>
 </c:if>
+<script src="/MusicStreamingWeb/html/js/jquery.barrating.js"></script>
 <%@include file="/html/common/footer.jsp"%>

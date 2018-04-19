@@ -1,13 +1,13 @@
 	<footer>
-	<audio controls>
-		<source src="" type="audio/mpeg" id="reproductor">
+	<audio controls preload="none" id="reproductor">
+		<source src="" type="audio/mpeg" id="media">
 	</audio>
 	<script>
-		function updateSrc(){
-			document.getElementById('reproductor').src = "/MusicStreamingWeb/songs/";
-			document.getElementById('reproductor').src+=this.id;
-			console.log(this.id);
-			console.log(document.getElementById('reproductor').src+=this.id);
+		function updateSrc(button){	
+			var media = document.getElementById('media');
+			media.src="/MusicStreamingWeb/songs/"+button.id.substring(4,button.id.length)+".mp3";
+			reproductor.load();
+			reproductor.play();
 		}
 	</script>
 	</footer>

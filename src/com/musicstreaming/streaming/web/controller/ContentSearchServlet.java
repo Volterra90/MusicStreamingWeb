@@ -80,8 +80,9 @@ public class ContentSearchServlet extends HttpServlet {
 				}
 
 
-				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,10);
-				List<Artista> artistas = new ArrayList<>();
+				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,50);
+				List<Artista> artistasCancion = new ArrayList<>();
+				List<Artista> artistasAlbum = new ArrayList<>();
 				List<Cancion> cancions = new ArrayList<>();
 				List<Album> albums = new ArrayList<>();
 				List<String> duracions = new ArrayList<>();
@@ -90,11 +91,11 @@ public class ContentSearchServlet extends HttpServlet {
 				for (Contido c: contidos){
 					if (c instanceof Cancion) {
 						cancions.add((Cancion)c);
-						artistas.add(artistaService.findById(c.getCodArtista()));
+						artistasCancion.add(artistaService.findById(c.getCodArtista()));
 						duracions.add(ContentUtils.getPrettyDuracion(((Cancion) c).getDuracion()));
 					} else if (c instanceof Album){
 						albums.add((Album)c);
-						artistas.add(artistaService.findById(c.getCodArtista()));
+						artistasAlbum.add(artistaService.findById(c.getCodArtista()));
 					} else if (c instanceof Playlist){
 						playlists.add((Playlist)c);
 					}
@@ -103,7 +104,8 @@ public class ContentSearchServlet extends HttpServlet {
 				request.setAttribute(AttributeNames.CANCIONS, cancions);
 				request.setAttribute(AttributeNames.ALBUMS, albums);
 				request.setAttribute(AttributeNames.PLAYLISTS, playlists);
-				request.setAttribute(AttributeNames.ARTISTAS, artistas);
+				request.setAttribute(AttributeNames.ARTISTAS_CANCION, artistasCancion);
+				request.setAttribute(AttributeNames.ARTISTAS_ALBUM, artistasAlbum);
 				request.setAttribute(AttributeNames.DURACIONS, duracions);
 				request.getRequestDispatcher(ViewsPaths.CONTENTRESULTS).forward(request, response);
 			}

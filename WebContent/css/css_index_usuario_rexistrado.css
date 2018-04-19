@@ -82,7 +82,7 @@ section > div{
 	padding: 20px;
 }
 
-form{
+.form-busqueda{
     display: grid;
     grid-gap: 20px;
     padding: 30px;

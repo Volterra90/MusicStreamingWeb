@@ -124,7 +124,7 @@ public class UserServlet extends HttpServlet {
 				logger.debug("Locale changed to "+newLocale);
 			}
 			
-			target = ViewsPaths.INDEX; 		
+			target = request.getHeader("referer"); 		
 			redirect = true;
 			
     	}catch (Exception e) {
