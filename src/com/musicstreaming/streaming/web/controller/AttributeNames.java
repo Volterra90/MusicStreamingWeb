@@ -2,7 +2,10 @@ package com.musicstreaming.streaming.web.controller;
 
 public interface AttributeNames {
 	
+	//Atributo para renderizar os erros
 	public static final String ERROR = "error";
+	
+	//Usuario
 	public static final String USER = "user";
 	
 	//Resultados de búsqueda
@@ -29,6 +32,14 @@ public interface AttributeNames {
 	public static final String ALBUM = "album";
 	public static final String ARTISTA = "artista";
 	
+	//Erros no sign-up
+	public static final String ERROR_FIRST_NAME = "error_first_name_empty";
+	public static final String ERROR_LAST_NAME = "error_last_name_empty";
+	public static final String ERROR_NICK = "error_nick";
+	public static final String ERROR_EMAIL = "error_email";
+	public static final String ERROR_PASSWORD = "error_password";
+	public static final String ERROR_DATE = "error_date";
+	public static final String ERROR_GENDER = "error_gender";
 	
 	
 }

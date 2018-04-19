@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.musicstreaming.streaming.exceptions.DuplicateInstanceException;
+import com.musicstreaming.streaming.exceptions.MailException;
 import com.musicstreaming.streaming.model.Usuario;
 import com.musicstreaming.streaming.service.UsuarioService;
 import com.musicstreaming.streaming.service.impl.UsuarioServiceImpl;
@@ -43,33 +46,82 @@ public class UserServlet extends HttpServlet {
 		String action = request.getParameter(ParameterNames.ACTION);	
 		String target = null;
 		boolean redirect = false;
-			if (ParameterNames.SIGNUP.equalsIgnoreCase(action)) {
-				try {
-				Usuario u = new Usuario();
-				u.setApelidos(request.getParameter(ParameterNames.APELIDOS));
-				u.setContrasinal(PasswordEncryptionUtil.encryptPassword(request.getParameter(ParameterNames.PASSWORD)));
-				String fecha = request.getParameter(ParameterNames.FECHA);
-				
-				Date fechaNacemento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-				u.setFechaNacemento(fechaNacemento);
-				u.setEmail(request.getParameter(ParameterNames.EMAIL));
-				u.setFechaSubscricion(new Date());
-				u.setNick(request.getParameter(ParameterNames.NICK));
-				u.setNome(request.getParameter(ParameterNames.NOME)); 
-				u.setXenero(request.getParameter(ParameterNames.XENERO).charAt(0));
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Usuario: " + ToStringUtil.toString(u));
+		if (ParameterNames.SIGNUP.equalsIgnoreCase(action)) {
+			try {
+			String nome = request.getParameter(ParameterNames.NOME);
+			String apelidos = request.getParameter(ParameterNames.APELIDOS);
+			String nick = request.getParameter(ParameterNames.NICK);
+			String email = request.getParameter(ParameterNames.EMAIL);
+			String password = PasswordEncryptionUtil.encryptPassword(request.getParameter(ParameterNames.PASSWORD));
+			String fecha = request.getParameter(ParameterNames.FECHA);
+			Date fechaNacemento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+			Character xenero = request.getParameter(ParameterNames.XENERO).charAt(0);
+
+			boolean hasErrors = false;
+
+			if (StringUtils.isEmpty(nome)) {
+				request.setAttribute(AttributeNames.ERROR_FIRST_NAME, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if(StringUtils.isEmpty(apelidos)) {
+				request.setAttribute(AttributeNames.ERROR_LAST_NAME, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if (StringUtils.isEmpty(nick)) {
+				request.setAttribute(AttributeNames.ERROR_NICK, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if (StringUtils.isEmpty(email)) {
+				request.setAttribute(AttributeNames.ERROR_EMAIL, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if (StringUtils.isEmpty(password)) {
+				request.setAttribute(AttributeNames.ERROR_PASSWORD, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if(StringUtils.isEmpty(fecha)) {
+				request.setAttribute(AttributeNames.ERROR_DATE, Errors.REQUIRED_FIELD_ERROR);
+				hasErrors = true;
+			}
+			if(StringUtils.isEmpty(xenero.toString())) {
+				request.setAttribute(AttributeNames.ERROR_GENDER, Errors.REQUIRED_FIELD_ERROR);
+			}
+			if (hasErrors) {
+				target = ViewsPaths.SIGN_UP;
+			}else {
+					Usuario u = new Usuario();
+					u.setApelidos(apelidos);
+					u.setContrasinal(password);
+					u.setFechaNacemento(fechaNacemento);
+					u.setEmail(email);
+					u.setFechaSubscricion(new Date());
+					u.setNick(nick);
+					u.setNome(nome); 
+					u.setXenero(xenero);
+
+					if (logger.isDebugEnabled()) {
+						logger.debug("Usuario: " + ToStringUtil.toString(u));
+					}
+
+					usuarioService.create(u);
+					target = request.getContextPath()+ViewsPaths.SIGN_IN;
+					redirect = true;
+			}}catch(DuplicateInstanceException e) {
+					logger.error(e.getMessage(),e);
+					request.setAttribute(AttributeNames.ERROR, Errors.DUPLICATE_NICK_USER);
+					target = ViewsPaths.SIGN_UP;
 				}
-
-				usuarioService.create(u);
-				target = request.getContextPath()+ViewsPaths.SIGN_IN;
-				redirect = true;
-		}catch (Throwable e) {			
-			logger.error(e.getMessage(),e);
-			request.setAttribute(AttributeNames.ERROR, e.getMessage());
-			request.getRequestDispatcher(ViewsPaths.SIGN_UP).forward(request, response);
-		}
+				catch (MailException e) {
+					logger.error(e.getMessage(),e);
+					request.setAttribute(AttributeNames.ERROR, Errors.MAIL_ERROR);
+					target = ViewsPaths.SIGN_UP;
+				}
+				catch (Exception e) {			
+					logger.error(e.getMessage(),e);
+					request.setAttribute(AttributeNames.ERROR, Errors.GENERIC_ERROR);
+					request.getRequestDispatcher(ViewsPaths.SIGN_UP).forward(request, response);
+				}
 		
 		}else if (ParameterNames.SIGNIN.equalsIgnoreCase(action)) {
 			String userName = request.getParameter(ParameterNames.NOME);

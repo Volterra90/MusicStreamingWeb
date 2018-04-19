@@ -54,3 +54,8 @@ legend{
 section > form > div > p{
     text-align: center;
 }
+
+.error{
+	color: red;
+	text-align: center;
+}
