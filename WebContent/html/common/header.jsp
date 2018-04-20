@@ -26,23 +26,23 @@
 </script>
 
 <script>
+
 	$(document).ready(function() {
 		$('.votacion').change(function(event) {
 			var nota = this.value;
 			console.log(nota);
-			var idContido = $(this).attr('id');
-			var idUsuario = '<c:out value="${usuario.idUsuario}"/>' ;
+			idContido = $(this).attr('id');
+			var idUsuario = '<c:out value="${usuario.idUsuario}"/>';
 			console.log(idUsuario);
-			$.get('VoteSongServlet', {
-                "nota" : nota,
-                "idContido": idContido,
-                "idUsuario": idUsuario
-            }, function(responseText) {
-                alert(responseText);
-                media=responseText;
+			$.post('VoteSongServlet', {
+				"nota" : nota,
+				"idContido" : idContido,
+				"idUsuario" : idUsuario
+			}, function(responseText) {
+				$('#media'+idContido).html(responseText);
+			});
 		});
 	});
-});
 </script>
 </head>
 <body>
@@ -51,7 +51,6 @@
 			<div>
 				<a href="/MusicStreamingWeb/IndexServlet"><img
 					src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
-					<a href="/MusicStreamingWeb/PlaylistServlet?idUsuario=<c:out value="${usuario.idUsuario}"/>&action=<%=ParameterNames.PRELOAD_PLAYLISTS_USER%>"><fmt:message key="As_minhas_playlists" bundle="${messages}" /></a>
 			</div>
 			<div></div>
 			<div></div>

@@ -177,8 +177,7 @@ public class UserServlet extends HttpServlet {
 		}
 		}else if (ParameterNames.CHANGE_LOCALE.equalsIgnoreCase(action)) {
     		String localeName = request.getParameter(ParameterNames.LOCALE);
-    		// Recordar que hay que validar... lo que nos envian, incluso en algo como esto.
-    		// Buscamos entre los Locale soportados por la web:
+    		
     		List<Locale> results = LocaleManager.getMatchedLocales(localeName);
     		Locale newLocale = null;
     		try {
@@ -196,12 +195,13 @@ public class UserServlet extends HttpServlet {
 				logger.debug("Locale changed to "+newLocale);
 			}
 			
-			target = request.getHeader("referer"); 		
+			target = 
+					ViewsPaths.INDEX; 		
 			redirect = true;
 			
     	}catch (Exception e) {
 				logger.error(e.getMessage(),e);
-				request.setAttribute(AttributeNames.ERROR, e.getMessage());
+				request.setAttribute(AttributeNames.ERROR, Errors.LOCALE_ERROR);
 				request.getRequestDispatcher(ViewsPaths.SIGN_IN).forward(request, response);
 			}
 		}

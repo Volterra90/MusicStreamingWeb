@@ -67,6 +67,7 @@ public class IndexServlet extends HttpServlet {
 		request.setAttribute(AttributeNames.ARTISTAS_ALBUM, artistasAlbum);
 		request.setAttribute(AttributeNames.DURACIONS, duracions);	
 		
+		
 		request.getRequestDispatcher(ViewsPaths.INDEX_JSP).forward(request, response);
 		}
 		

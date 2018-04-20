@@ -14,6 +14,7 @@
 <c:set var="nome" value="${requestScope.nome}" scope="page" />
 <c:set var="identification_error" value="${requestScope.identification_error}" scope="page" />
   
+  
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +46,7 @@
                     </div>
                     <input type="submit" value="<fmt:message key="Entrar" bundle="${messages}"/>" class="center"/>
                  	<p class="center"><strong><fmt:message key="Ainda_non_usuario" bundle="${messages}"/></strong></p>
-                    <p class="center"><a href="../signup/signup.jsp"><input type="button" value="<fmt:message key="Rexistrarse" bundle="${messages}"/>"/></a></p>
+                    <p class="center"><a href="/MusicStreamingWeb/html/signup/signup.jsp"><input type="button" value="<fmt:message key="Rexistrarse" bundle="${messages}"/>"/></a></p>
                 </form>
             </section>
         </div>

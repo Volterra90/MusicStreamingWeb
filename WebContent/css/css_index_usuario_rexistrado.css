@@ -11,7 +11,8 @@
     grid-template-areas: "header header header header header header header header header header header header"
                          "nav nav nav section section section section section section section section section"
                          "footer footer footer footer footer footer footer footer footer footer footer footer";
-   	grid-template-rows: 100px 865px auto;             
+   	grid-template-rows: 100px auto 0px;
+   	min-height: 1080px;             
 }
 
 
@@ -135,4 +136,25 @@ audio{
 	text-align: center;
 	font-size: 16pt;
 	color: red;
+}
+
+.nomeArtista{
+	font-size: 30pt;
+	heigth: 300px;
+	width: 100%;
+}
+
+.img-artista{
+  width: 70%;
+  height: 100%;
+}
+
+.div-album-page{
+	width: 20%;
+	float: left;
+}
+
+.img-album-page{
+	width: 200px;
+	width: 200px;
 }

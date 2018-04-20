@@ -59,4 +59,5 @@ public interface AttributeNames {
 	
 	//Atributos do formulario de búsqueda
 	public static final String NOMECONTIDO = "nome_contido";
+	public static final String NOMEARTISTA = "nome_artista";
 }

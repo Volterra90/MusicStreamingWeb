@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>MusicStreamingWeb</display-name>
   <welcome-file-list>
-    <welcome-file>/IndexServlet</welcome-file>
+    <welcome-file>html/signin/signin.jsp</welcome-file>
   </welcome-file-list>
   <session-config>
     <session-timeout>30</session-timeout>
@@ -77,5 +77,9 @@
   <filter-mapping>
     <filter-name>IdentificationFilter</filter-name>
     <url-pattern>/html/playlist/*</url-pattern>
+  </filter-mapping>
+   <filter-mapping>
+    <filter-name>IdentificationFilter</filter-name>
+    <url-pattern>/html/album/*</url-pattern>
   </filter-mapping>
 </web-app>

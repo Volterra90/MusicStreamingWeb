@@ -21,11 +21,9 @@ import com.musicstreaming.streaming.model.Cancion;
 import com.musicstreaming.streaming.model.Contido;
 import com.musicstreaming.streaming.model.Playlist;
 import com.musicstreaming.streaming.service.ArtistaService;
-import com.musicstreaming.streaming.service.CancionService;
 import com.musicstreaming.streaming.service.ContidoCriteria;
 import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ArtistaServiceImpl;
-import com.musicstreaming.streaming.service.impl.CancionServiceImpl;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
 import com.musicstreaming.streaming.web.util.ContentUtils;
 
@@ -36,13 +34,11 @@ public class ContentSearchServlet extends HttpServlet {
 
 	private static Logger logger = LogManager.getLogger(ContentSearchServlet.class.getName());
 	private ContidoService contidoService = null;
-	private CancionService cancionService = null;
 	private ArtistaService artistaService = null;
 	
 	public ContentSearchServlet() {
 		super();
 		contidoService = new ContidoServiceImpl();
-		cancionService = new CancionServiceImpl();
 		artistaService = new ArtistaServiceImpl();
 	}
 
@@ -78,7 +74,7 @@ public class ContentSearchServlet extends HttpServlet {
 				
 				if (!StringUtils.isEmpty(nomeArtista)){
 					cc.setNomeArtista(nomeArtista);
-					request.setAttribute(AttributeNames.ARTISTA, nomeArtista);
+					request.setAttribute(AttributeNames.NOMEARTISTA, nomeArtista);
 				}
 				if (!StringUtils.isEmpty(nomeContido)){
 					cc.setNome(nomeContido);
@@ -135,14 +131,24 @@ public class ContentSearchServlet extends HttpServlet {
 				Long idArtista = Long.valueOf(request.getParameter(ParameterNames.IDARTISTA));
 				Artista artista = artistaService.findById(idArtista);
 				Character[] tipoAlbum = {'A'};
-				System.out.println(tipoAlbum);
 				cc.setCodArtista(idArtista);
 				cc.setTipos(tipoAlbum);
-				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);	
-				
+				List<Album> albumes = (List<Album>)contidoService.findByCriteria(cc, startIndex, count);
+				List<String> duracions = new ArrayList<>();
+				for (Album a: albumes) {
+					for (Cancion c: a.getCancions()) {
+						duracions.add(ContentUtils.getPrettyDuracion(c.getDuracion()));
+					}
+				}
 				request.setAttribute(AttributeNames.ARTISTA, artista);
 				request.setAttribute(AttributeNames.ALBUMS,  albumes);
+				request.setAttribute(AttributeNames.DURACIONS, duracions);
 				request.getRequestDispatcher(ViewsPaths.ALBUM_JSP).forward(request,response);
+			}
+			catch (DataException e) {
+				logger.error(e.getMessage(), e);
+				request.setAttribute(AttributeNames.ERROR, Errors.ALBUM_ERROR);
+				request.getRequestDispatcher(ViewsPaths.INDEX).forward(request, response);
 			}
 			catch (Exception e) {
 				logger.error(e.getMessage(), e);

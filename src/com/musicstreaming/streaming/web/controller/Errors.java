@@ -11,4 +11,6 @@ public interface Errors {
 			public static final String TOP_CONTIDOS = "error.preload_top";
 			public static final String IDENTIFICATION_ERROR ="error.identification";
 			public static final String SEARCH_ERROR = "error.search";
+			public static final String ALBUM_ERROR = "error.album";
+			public static final String LOCALE_ERROR = "error.locale";
 }

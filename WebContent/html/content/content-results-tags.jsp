@@ -14,11 +14,19 @@
 	</div>
 	<c:if test='${not empty cancions}'>
 	<table class="tabla_cancions">
+		<tr>
+			<td></td>
+			<td><fmt:message key="Nome_cancion" bundle="${messages}" /></td>
+			<td><fmt:message key="Media" bundle="${messages}" /></td>
+			<td><fmt:message key="Artista" bundle="${messages}" /></td>
+			<td><fmt:message key="Duracion" bundle="${messages}" /></td>
+			<td><fmt:message key="Vota" bundle="${messages}" /></td>
+		</tr>
 		<c:forEach items="${cancions}" var="cancion" varStatus="status">
 			<tr>
 					<td onclick="updateSrc(this)" id="play<c:out value='${cancion.codContido}'/>"><i class="fa fa-play"></i></td>
 					<td><c:out value="${cancion.nome}" /></td>
-					<td><c:out value="${cancion.media}" /></td>
+					<td id="media<c:out value='${cancion.codContido}'/>"><c:out value='${cancion.media}'/></td>
 					<td><c:out value="${artistasCancion[status.index].nomeArtista}" /></td>
 					<td><c:out value="${duracions[status.index]}" /></td>
 					<td>
@@ -49,7 +57,13 @@
 <c:if test='${not empty albums}'>
 	<c:forEach items="${albums}" var="album" varStatus="status">
 		<div class="div_album">
-			<img src="/MusicStreamingWeb/html/img/<c:out value="${album.codContido}"/>.jpg" class="img-album">
+		<c:url value="/ContentSearchServlet" var="urlalbum">
+			<c:param name="idAlbum" value="${album.codContido}"/>"/>
+			<c:param name="idArtista" value="${album.codArtista}"/>"/>
+			<c:param name="action" value="busquedaalbum"/>
+		</c:url>
+			<a href="<c:out value='${urlalbum}'/>#<c:out value='${album.codContido}'/>"/>
+			<img src="/MusicStreamingWeb/html/cms/albums/<c:out value="${album.codContido}"/>.jpg" class="img-album"></a>
 			<p><c:out value='${album.nome}'/></p>
 			<p><c:out value="${artistasAlbum[status.index].nomeArtista}" /></p>
 				<select id="<c:out value='${album.codContido}'/>"

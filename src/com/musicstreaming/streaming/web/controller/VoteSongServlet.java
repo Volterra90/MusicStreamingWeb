@@ -38,9 +38,9 @@ public class VoteSongServlet extends HttpServlet {
 		try {
 			contidoService.vota(usuario.getIdUsuario(), idContido, nota);
 			Contido c = contidoService.findById(idContido);
-			response.setContentType("text/plain");  
-		    response.getWriter().write(c.getMedia());       
-			request.getRequestDispatcher(request.getParameter(ParameterNames.VOTE_JSP)).forward(request, response);
+			response.setContentType("text/plain");
+			String media = c.getMedia().toString();
+		    response.getWriter().write(media);       
 		}
 		
 		catch (Exception e){

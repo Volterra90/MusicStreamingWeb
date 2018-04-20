@@ -1,4 +1,4 @@
-<!-- Por que no incluir cabeza y pie? -->
+
 
 <h3>Lo lamentamos, la página solicitada no se ha encontrado.</h3>
 

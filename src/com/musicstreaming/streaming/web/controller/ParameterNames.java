@@ -53,4 +53,7 @@ public interface ParameterNames {
 	
 	//Parámetros para a creación de playlists
 	public static final String NOME_PLAYLIST = "nomePlaylist";
+	
+	//URL para redireccionar ó cambiar de locale
+	public static final String URL_LOCALE = "url_locale";
 }

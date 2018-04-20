@@ -8,6 +8,7 @@
 <c:set var="artistasAlbum" value="${requestScope.artistasAlbum}" scope="page" />
 <c:set var="duracions" value="${requestScope.duracions}" scope="page" />
 
+
 <div>
 	<h3>
 		<fmt:message key="Top_cancions" bundle="${messages}" />
@@ -29,7 +30,7 @@
 					id="play<c:out value='${cancion.codContido}'/>"><i
 					class="fa fa-play"></i></td>
 				<td><c:out value="${cancion.nome}" /></td>
-				<td><c:out value="${cancion.media}" /></td>
+				<td id="media<c:out value='${cancion.codContido}'/>"><c:out value='${cancion.media}'/></td>
 				<td><c:out value="${artistasCancion[status.index].nomeArtista}" /></td>
 				<td><c:out value="${duracions[status.index]}" /></td>
 				<td><select id="<c:out value='${cancion.codContido}'/>"
@@ -60,7 +61,13 @@
 	<c:if test='${not empty albums}'>
 		<c:forEach items="${albums}" var="album" varStatus="status">
 		<div class="div_album">
-			<img src="/MusicStreamingWeb/html/img/<c:out value="${album.codContido}"/>.jpg" class="img-album">
+		<c:url value="/ContentSearchServlet" var="urlalbum">
+			<c:param name="idAlbum" value="${album.codContido}"/>"/>
+			<c:param name="idArtista" value="${album.codArtista}"/>"/>
+			<c:param name="action" value="busquedaalbum"/>
+		</c:url>
+		<a href="<c:out value="${urlalbum}"/>#<c:out value='${album.codContido}'/>">
+			<img src="/MusicStreamingWeb/html/cms/albums/<c:out value="${album.codContido}"/>.jpg" class="img-album"></a>
 			<p><c:out value='${album.nome}'/></p>
 			<p><c:out value="${artistasAlbum[status.index].nomeArtista}" /></p>
 				<select id="<c:out value='${album.codContido}'/>"
@@ -82,22 +89,6 @@
 		</c:forEach>
 	</c:if>
 	</div>
-	<div class="header-playlist">
-	<h3>
-		<fmt:message key="Top_playlists" bundle="${messages}" />
-	</h3>
-	</div>
-			</a>
-			<ul>
-				<%
-			List<Contido> topPlaylists = (List<Contido>) request.getAttribute(AttributeNames.TOP_N_PLAYLISTS);
-				Playlist playlist = null;
-				for (Contido c: topPlaylists){
-					playlist = (Playlist) c;
-			%><li><%=c.getNome()%></li>
-				<%} %>
-			
-		</div>
 		</section>
 		<script src="/MusicStreamingWeb/html/js/jquery.barrating.js"></script>
 		<%@include file="/html/common/footer.jsp"%>
