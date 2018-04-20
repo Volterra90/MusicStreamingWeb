@@ -1,20 +1,19 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
 #contenedor{
     display: grid;
-    background-repeat: no-repeat;
-	background-size: cover;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px auto auto;
     grid-template-areas: "header header header header header header header header header header header header"
                          "nav nav nav section section section section section section section section section"
                          "footer footer footer footer footer footer footer footer footer footer footer footer";
-     
+   	grid-template-rows: 100px 865px auto;             
 }
+
 
 
 
@@ -111,4 +110,29 @@ footer{
 
 audio{
 	width: 100%;
+}
+
+.img-album{
+	height: 150px;
+	width: 150px;
+}
+
+.contenedor-albumes{
+	width: 100%;
+}
+
+.div_album{
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.header-playlist{
+	clear:both;
+}
+
+.error{
+	text-align: center;
+	font-size: 16pt;
+	color: red;
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.musicstreaming.streaming.model.Contido;
 import com.musicstreaming.streaming.model.Usuario;
 import com.musicstreaming.streaming.service.ContidoService;
 import com.musicstreaming.streaming.service.impl.ContidoServiceImpl;
@@ -36,7 +37,9 @@ public class VoteSongServlet extends HttpServlet {
 		Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
 		try {
 			contidoService.vota(usuario.getIdUsuario(), idContido, nota);
-			logger.debug(request.getParameter(ParameterNames.VOTE_JSP));
+			Contido c = contidoService.findById(idContido);
+			response.setContentType("text/plain");  
+		    response.getWriter().write(c.getMedia());       
 			request.getRequestDispatcher(request.getParameter(ParameterNames.VOTE_JSP)).forward(request, response);
 		}
 		

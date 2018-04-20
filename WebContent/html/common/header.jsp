@@ -3,6 +3,7 @@
 	
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <fmt:setLocale value='${sessionScope["user-locale"]}' scope="session"/>
 <fmt:setBundle basename = "resources.Messages" var = "messages" scope="session"/>
@@ -19,6 +20,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/MusicStreamingWeb/css/fontawesome-stars.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 </script>
@@ -26,7 +28,8 @@
 <script>
 	$(document).ready(function() {
 		$('.votacion').change(function(event) {
-			var nota = $('.votacion').val();
+			var nota = this.value;
+			console.log(nota);
 			var idContido = $(this).attr('id');
 			var idUsuario = '<c:out value="${usuario.idUsuario}"/>' ;
 			console.log(idUsuario);
@@ -34,9 +37,12 @@
                 "nota" : nota,
                 "idContido": idContido,
                 "idUsuario": idUsuario
-            });
+            }, function(responseText) {
+                alert(responseText);
+                media=responseText;
 		});
 	});
+});
 </script>
 </head>
 <body>
@@ -61,3 +67,4 @@
 			<%@include file="/html/content/content-search.jsp"%>
 		</nav>
 		<section>
+		<p class="error"><c:if test="${not empty error}"><fmt:message key="${error}" bundle="${messages}"/></c:if></p>

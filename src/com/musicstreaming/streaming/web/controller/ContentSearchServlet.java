@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.musicstreaming.streaming.exceptions.DataException;
 import com.musicstreaming.streaming.model.Album;
 import com.musicstreaming.streaming.model.Artista;
 import com.musicstreaming.streaming.model.Cancion;
@@ -71,16 +72,21 @@ public class ContentSearchServlet extends HttpServlet {
 
 
 				cc.setTipos(tipos.toArray(new Character[tipos.size()]));
-
-				if (!StringUtils.isEmpty(request.getParameter(ParameterNames.ARTISTA))){
-					cc.setNomeArtista(request.getParameter(ParameterNames.ARTISTA));
+				
+				String nomeArtista = request.getParameter(ParameterNames.ARTISTA).trim();
+				String nomeContido = request.getParameter(ParameterNames.NOMECONTIDO).trim();
+				
+				if (!StringUtils.isEmpty(nomeArtista)){
+					cc.setNomeArtista(nomeArtista);
+					request.setAttribute(AttributeNames.ARTISTA, nomeArtista);
 				}
-				if (!StringUtils.isEmpty(request.getParameter(ParameterNames.NOMECONTIDO))){
-					cc.setNome(request.getParameter(ParameterNames.NOMECONTIDO));
+				if (!StringUtils.isEmpty(nomeContido)){
+					cc.setNome(nomeContido);
+					request.setAttribute(AttributeNames.NOMECONTIDO, nomeContido);
 				}
 
 
-				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,50);
+				List<Contido> contidos= (List<Contido>)contidoService.findByCriteria(cc,1,15);
 				List<Artista> artistasCancion = new ArrayList<>();
 				List<Artista> artistasAlbum = new ArrayList<>();
 				List<Cancion> cancions = new ArrayList<>();
@@ -109,6 +115,11 @@ public class ContentSearchServlet extends HttpServlet {
 				request.setAttribute(AttributeNames.DURACIONS, duracions);
 				request.getRequestDispatcher(ViewsPaths.CONTENTRESULTS).forward(request, response);
 			}
+		catch (DataException e) {
+			logger.error(e.getMessage(),e);
+			request.setAttribute(AttributeNames.ERROR, Errors.TOP_CONTIDOS);
+			request.getRequestDispatcher(ViewsPaths.INDEX_JSP).forward(request, response);
+		}
 		
 		catch (Exception e){
 			logger.error(e.getMessage(), e);

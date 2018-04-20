@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #contenedor{
@@ -12,7 +13,8 @@
     grid-template-areas: "header" "section";
     border-left:3px solid rgb(39, 175, 134);
     border-right: 3px solid rgb(39, 175, 134);
-    padding: 0px 20px;
+    border-bottom: 3px solid rgb(39, 175, 134);
+    padding: 0px 20px 20px 20px;
 }
 
 header > img{
@@ -58,4 +60,11 @@ section > form > div > p{
 .error{
 	color: red;
 	text-align: center;
+	font-size: 16pt;
+	grid-column: 2;
+}
+
+.error_xenero{
+	grid-column:1/span 2 !important;
+	justify-self: center;
 }

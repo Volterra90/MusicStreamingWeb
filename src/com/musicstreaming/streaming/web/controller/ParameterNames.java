@@ -21,6 +21,9 @@ public interface ParameterNames {
 	public static final String FECHA = "fecha";
 	public static final String XENERO = "xenero";
 	
+	//Parámetros no sign-in
+	public static final String RECORDAR_USUARIO = "recordar_usuario";
+	
 	//Parámetros do formulario de búsqueda
 	public static final String NOMECONTIDO = "nomecontido";
 	public static final String CANCION = "cancion";

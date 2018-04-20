@@ -11,5 +11,6 @@
 		}
 	</script>
 	</footer>
+	</div>
 </body>
 </html>
