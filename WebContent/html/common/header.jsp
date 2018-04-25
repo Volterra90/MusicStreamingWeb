@@ -15,11 +15,11 @@
 <meta charset="UTF-8">
 <title>MusicStreaming - Life's Music</title>
 <link rel="stylesheet" type="text/css"
-	href="/MusicStreamingWeb/css/css_index_usuario_rexistrado.css">
+	href="<c:out value="${pageContext.servletContext.contextPath}" />/css/css_index_usuario_rexistrado.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/MusicStreamingWeb/css/fontawesome-stars.css">
+<link rel="stylesheet" href="<c:out value="${pageContext.servletContext.contextPath}" />/css/fontawesome-stars.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -49,15 +49,15 @@
 	<div id="contenedor">
 		<header>
 			<div>
-				<a href="/MusicStreamingWeb/IndexServlet"><img
-					src="/MusicStreamingWeb/img/home-icon.png" id="home" /></a> 
+				<a href="<c:out value="${pageContext.servletContext.contextPath}" />/IndexServlet"><img
+					src="<c:out value="${pageContext.servletContext.contextPath}" />/img/home-icon.png" id="home" /></a> 
 			</div>
 			<div></div>
 			<div></div>
 			<div>
 				<%@include file="/html/user/user-profile.jsp"%>
-				<a href="/MusicStreamingWeb/SignOutServlet"> <img
-					src="/MusicStreamingWeb/img/logout.png" id="signout-logo" />
+				<a href="<c:out value="${pageContext.servletContext.contextPath}" />/SignOutServlet"> <img
+					src="<c:out value="${pageContext.servletContext.contextPath}" />/img/logout.png" id="signout-logo" />
 				</a>
 				<%@include file="/html/user/languages.jsp"%>
 			</div>

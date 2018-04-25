@@ -2,7 +2,7 @@
 	import="com.musicstreaming.streaming.web.controller.ParameterNames"%>
 <c:set var="nome_contido" value="${requestScope.nomeContido}" scope="page" />
 <c:set var="nome_artista" value="${requestScope.nomeArtista}" scope="page" />
-<form action="/MusicStreamingWeb/ContentSearchServlet" method="POST" class="form-busqueda">
+<form action="<c:out value="${pageContext.servletContext.contextPath}" />/ContentSearchServlet" method="POST" class="form-busqueda">
 	<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ParameterNames.BUSQUEDACONTIDO%>"/>
 	<h2><fmt:message key="Busqueda" bundle="${messages}"/></h2>
 	<input type="text" name="<%=ParameterNames.NOMECONTIDO%>" value="<c:out value="${nome_contido}"/>"/>

@@ -63,7 +63,7 @@
 			<c:param name="action" value="busquedaalbum"/>
 		</c:url>
 			<a href="<c:out value='${urlalbum}'/>#<c:out value='${album.codContido}'/>"/>
-			<img src="/MusicStreamingWeb/html/cms/albums/<c:out value="${album.codContido}"/>.jpg" class="img-album"></a>
+			<img src="<c:out value="${pageContext.servletContext.contextPath}" />/html/cms/albums/<c:out value="${album.codContido}"/>.jpg" class="img-album"></a>
 			<p><c:out value='${album.nome}'/></p>
 			<p><c:out value="${artistasAlbum[status.index].nomeArtista}" /></p>
 				<select id="<c:out value='${album.codContido}'/>"
@@ -100,5 +100,5 @@
 	</c:forEach>
 </c:if>
 </section>
-<script src="/MusicStreamingWeb/html/js/jquery.barrating.js"></script>
+<script src="<c:out value="${pageContext.servletContext.contextPath}" />/html/js/jquery.barrating.js"></script>
 <%@include file="/html/common/footer.jsp"%>
